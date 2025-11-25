@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="sidebar" style="left: 0px">
+    <div id="sidebar" class="box-shadow">
+      <div id="sidebar-top" class="open">
+        <button onclick="toggleAbout()">⌵</button>
+      </div>
       <div id="presentation-lmo">
         <img src="TemplateData/logo-lmo.png" width="50px" height="50px">
         <div style="display: flex;flex-direction: column;">
@@ -16,14 +19,16 @@
           <p>Laura Martínez Orea</p>
         </div>
       </div>
-      <div class="sidebar-yap">
-        hi! this is my first project with unity, an homage to red velvet's cosmic
-      </div>
-      <div class="sidebar-yap">
-        full credits are available in the <b>about</b> section of the game
-      </div>
-      <div class="sidebar-yap">
-        enjoy!
+      <div>
+        <div class="sidebar-yap">
+          hi! this is my first project with unity, an homage to red velvet's cosmic
+        </div>
+        <div class="sidebar-yap">
+          full credits are available in the <b>about</b> section of the game
+        </div>
+        <div class="sidebar-yap">
+          enjoy!
+        </div>
       </div>
       <div id="sidebar-btns">
         <a href="https://www.youtube.com/watch?v=FyG21rXCxlY&pp=ygUGY29zbWlj">red velvet mv</a>
@@ -117,6 +122,7 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
         document.querySelector("#unity-container").className = "unity-mobile";
+        document.querySelector("#sidebar").className = "unity-mobile box-shadow";
         canvas.className = "unity-mobile";
 
         // To lower canvas resolution on mobile devices to gain some
@@ -151,6 +157,28 @@
             };
 
       document.body.appendChild(script);
+
+      function toggleAbout() {
+        var isOpen = true;
+        var sidebar = document.querySelector("#sidebar");
+        sidebar.childNodes.forEach(c => {
+          if (c.nodeName !== 'DIV') return;
+          if (c.getAttribute("id") === "sidebar-top") {
+            isOpen = c.className === 'open';
+            if (isOpen) {
+              c.childNodes[1].innerHTML = '﹥';
+              c.className = '';
+            } else {
+              c.childNodes[1].innerHTML = '⌵';
+              c.className = 'open';
+            }
+
+            return;
+          }
+          c.className = isOpen ? "display-none" : '';
+        });
+        sidebar.style.width = isOpen ? "auto" : "";
+      }
 
     </script>
   </body>

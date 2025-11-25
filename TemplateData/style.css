@@ -9,10 +9,15 @@ body {
     height: 100vh; 
     font-family: rainyHearts;
 }
-#unity-container { position: absolute }
+#unity-container { 
+    position: absolute;
+}
 #unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
 #unity-container.unity-mobile { position: fixed; width: 100%; height: 100% }
-#unity-canvas { background: #231F20; }
+#unity-canvas { 
+    background: #231F20;
+    border-radius: 1%;
+}
 .unity-mobile #unity-canvas { width: 100%; height: 100% }
 #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
 #unity-logo { width: 154px; height: 130px; background: url('unity-logo-dark.png') no-repeat center }
@@ -26,7 +31,7 @@ body {
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
 #sidebar {
     position: fixed;
-    top: 50px;
+    top: 1em;
     padding: 10px 7px;
     width: 20vw;
     z-index: 9999;
@@ -34,6 +39,13 @@ body {
     background: #fff;
     display: flex;
     flex-direction: column;
+    left: 1em;
+    border-radius: 1%;
+}
+
+#sidebar.unity-mobile {
+    width: 90vw;
+    left: 4vw;
 }
 
 #presentation-lmo {
@@ -67,9 +79,36 @@ body {
     text-decoration: none;
     color: #444;
     font-size: 11px;
+    border-radius: 1%!important;
 }
 
 #sidebar-btns a:hover {
     background: #A62639;
     color: #eceaea;
+}
+
+.box-shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#sidebar-top {
+    display: flex;
+}
+
+#sidebar-top > button {
+    cursor: pointer;
+    padding: 0 4px;
+    background: #ffffff;
+    border: 1px solid #A62639;
+    border-radius: 1%!important;
+    color: #444;
+}
+
+#sidebar-top > button:hover {
+    background: #A62639;
+    color: #eceaea;
+}
+
+.display-none {
+    display: none!important;
 }
