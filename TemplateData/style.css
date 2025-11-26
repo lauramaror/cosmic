@@ -102,6 +102,7 @@ body {
     border: 1px solid #A62639;
     border-radius: 1%!important;
     color: #444;
+    font-weight: bold;
 }
 
 #sidebar-top > button:hover {
