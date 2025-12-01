@@ -37,7 +37,7 @@ body {
     z-index: 9999;
     text-align: center;
     background: #fff;
-    display: flex;
+    display: none;
     flex-direction: column;
     left: 1em;
     border-radius: 1%;

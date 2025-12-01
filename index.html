@@ -64,6 +64,7 @@
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
+      var sidebar = document.querySelector("#sidebar");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -75,6 +76,9 @@
         var warningBanner = document.querySelector("#unity-warning");
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+          if (warningBanner.children.length) {
+            sidebar.style.display = 'flex';
+          }
         }
         var div = document.createElement('div');
         div.innerHTML = msg;
@@ -157,6 +161,7 @@
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           document.querySelector("#unity-loading-bar").style.display = "none";
+          sidebar.style.display = 'flex';
           document.querySelector("#unity-fullscreen-button").onclick = () => {
             unityInstance.SetFullscreen(1);
             // canvas.style = "border-radius: 0";
@@ -168,8 +173,6 @@
       };
 
       document.body.appendChild(script);
-
-      var sidebar = document.querySelector("#sidebar");
 
       function toggleAbout() {
         var isClosed = sidebar.classList.toggle('closed');
