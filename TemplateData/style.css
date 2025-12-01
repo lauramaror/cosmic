@@ -41,11 +41,27 @@ body {
     flex-direction: column;
     left: 1em;
     border-radius: 1%;
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    animation: animate-width 1.2s 1 ease-in-out;
+
+    &.closed {
+        width: 20px!important;
+        div:not(#sidebar-top) {
+            display: none!important;
+        }
+    }
 }
 
 #sidebar.unity-mobile {
     width: 90vw;
     left: 4vw;
+
+    animation: animate-width-mobile 1.2s 1 ease-in-out;
+}
+
+.sidebar-opacity {
+    transition: opacity 0.5s ease-out;
+    animation: animate-opacity 1.2s 1 ease-in-out;
 }
 
 #presentation-lmo {
@@ -60,7 +76,7 @@ body {
     text-align: left; 
     font-weight: bold;
     border-top: 2px solid #A62639;
-    margin: 0
+    margin: 0;
 }
 
 .sidebar-yap {
@@ -80,11 +96,11 @@ body {
     color: #444;
     font-size: 11px;
     border-radius: 1%!important;
-}
 
-#sidebar-btns a:hover {
-    background: #A62639;
-    color: #eceaea;
+    &:hover {
+        background: #A62639;
+        color: #eceaea;
+    }
 }
 
 .box-shadow {
@@ -97,19 +113,41 @@ body {
 
 #sidebar-top > button {
     cursor: pointer;
-    padding: 0 4px;
+    padding: 4px;
     background: #ffffff;
-    border: 1px solid #A62639;
+    border: none;
     border-radius: 1%!important;
     color: #444;
     font-weight: bold;
+    width: 20px;
+    height: 20px;
+
+    &:hover {
+        color: #A62639;
+    }
 }
 
-#sidebar-top > button:hover {
-    background: #A62639;
-    color: #eceaea;
+@keyframes animate-width {
+    0%,40% { 
+        width: 20px; 
+        height: 20px;
+    }
+    100% { 
+        width: 20vw;
+        height: 100%;
+    }
 }
 
-.display-none {
-    display: none!important;
+@keyframes animate-opacity {
+    0%,40% { 
+        opacity: 0;
+    }
+    100% { 
+        opacity: 1;
+    }
+}
+
+@keyframes animate-width-mobile {
+  0%,40% { width: 20px; height: 20px; }
+    100% { width: 90vw; height: 100%; }
 }

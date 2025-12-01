@@ -18,17 +18,17 @@
   </head>
   <body>
     <div id="sidebar" class="box-shadow">
-      <div id="sidebar-top" class="open">
+      <div id="sidebar-top">
         <button onclick="toggleAbout()">⌵</button>
       </div>
-      <div id="presentation-lmo">
+      <div id="presentation-lmo" class="sidebar-opacity">
         <img src="TemplateData/logo-lmo.png" width="50px" height="50px">
         <div style="display: flex;flex-direction: column;">
           <span style="font-size: 13px;color: #a8a8a8;margin-bottom: 4px;">fullstack developer</span>
           <p>Laura Martínez Orea</p>
         </div>
       </div>
-      <div>
+      <div class="sidebar-opacity">
         <div class="sidebar-yap">
           hi! this is my first project with unity, an homage to red velvet's cosmic
         </div>
@@ -42,7 +42,7 @@
           enjoy!
         </div>
       </div>
-      <div id="sidebar-btns">
+      <div id="sidebar-btns" class="sidebar-opacity">
         <a href="https://www.youtube.com/watch?v=FyG21rXCxlY&pp=ygUGY29zbWlj">red velvet mv</a>
         <a href="mailto:lauramaror@gmail.com">mail</a>
       </div>
@@ -146,8 +146,6 @@
         // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
         canvas.style.width = "calc(85vh)";
         canvas.style.height = "calc(85vh)";
-        // canvas.style.width = "655px";
-        // canvas.style.height = "655px";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
@@ -157,39 +155,32 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
+        }).then((unityInstance) => {
+          document.querySelector("#unity-loading-bar").style.display = "none";
+          document.querySelector("#unity-fullscreen-button").onclick = () => {
+            unityInstance.SetFullscreen(1);
+            // canvas.style = "border-radius: 0";
+          };
 
-              }).catch((message) => {
-                alert(message);
-              });
-            };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
 
       document.body.appendChild(script);
 
+      var sidebar = document.querySelector("#sidebar");
+
       function toggleAbout() {
-        var isOpen = true;
-        var sidebar = document.querySelector("#sidebar");
+        var isClosed = sidebar.classList.toggle('closed');
         sidebar.childNodes.forEach(c => {
           if (c.nodeName !== 'DIV') return;
           if (c.getAttribute("id") === "sidebar-top") {
-            isOpen = c.className === 'open';
-            if (isOpen) {
-              c.childNodes[1].innerHTML = '﹥';
-              c.className = '';
-            } else {
-              c.childNodes[1].innerHTML = '⌵';
-              c.className = 'open';
-            }
+            c.childNodes[1].innerHTML = isClosed ? '﹥' : '⌵';
 
             return;
           }
-          c.className = isOpen ? "display-none" : '';
         });
-        sidebar.style.width = isOpen ? "auto" : "";
       }
 
     </script>
