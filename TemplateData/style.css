@@ -134,12 +134,12 @@ body {
     }
     100% { 
         width: 20vw;
-        height: 100%;
+        height: 70%;
     }
 }
 
 @keyframes animate-opacity {
-    0%,40% { 
+    0%,55% { 
         opacity: 0;
     }
     100% { 
@@ -149,5 +149,5 @@ body {
 
 @keyframes animate-width-mobile {
   0%,40% { width: 20px; height: 20px; }
-    100% { width: 90vw; height: 100%; }
+    100% { width: 90vw; height: 50%; }
 }
